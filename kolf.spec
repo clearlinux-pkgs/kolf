@@ -5,24 +5,23 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : kolf
-Version  : 18.08.0
-Release  : 1
-URL      : https://download.kde.org/stable/applications/18.08.0/src/kolf-18.08.0.tar.xz
-Source0  : https://download.kde.org/stable/applications/18.08.0/src/kolf-18.08.0.tar.xz
-Source99 : https://download.kde.org/stable/applications/18.08.0/src/kolf-18.08.0.tar.xz.sig
+Version  : 18.12.2
+Release  : 2
+URL      : https://download.kde.org/stable/applications/18.12.2/src/kolf-18.12.2.tar.xz
+Source0  : https://download.kde.org/stable/applications/18.12.2/src/kolf-18.12.2.tar.xz
+Source99 : https://download.kde.org/stable/applications/18.12.2/src/kolf-18.12.2.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
-License  : GFDL-1.2 GPL-2.0 LGPL-2.0
-Requires: kolf-bin
-Requires: kolf-lib
-Requires: kolf-data
-Requires: kolf-license
-Requires: kolf-locales
+License  : GFDL-1.2 GPL-2.0 LGPL-2.0 Zlib
+Requires: kolf-bin = %{version}-%{release}
+Requires: kolf-data = %{version}-%{release}
+Requires: kolf-lib = %{version}-%{release}
+Requires: kolf-license = %{version}-%{release}
+Requires: kolf-locales = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : libkdegames-dev
-BuildRequires : phonon-dev
-BuildRequires : qtbase-dev qtbase-extras mesa-dev
+BuildRequires : qtbase-dev mesa-dev
 
 %description
 This directory contains code from Project Tagaro, which has been copied into
@@ -32,8 +31,8 @@ stable.
 %package bin
 Summary: bin components for the kolf package.
 Group: Binaries
-Requires: kolf-data
-Requires: kolf-license
+Requires: kolf-data = %{version}-%{release}
+Requires: kolf-license = %{version}-%{release}
 
 %description bin
 bin components for the kolf package.
@@ -58,8 +57,8 @@ doc components for the kolf package.
 %package lib
 Summary: lib components for the kolf package.
 Group: Libraries
-Requires: kolf-data
-Requires: kolf-license
+Requires: kolf-data = %{version}-%{release}
+Requires: kolf-license = %{version}-%{release}
 
 %description lib
 lib components for the kolf package.
@@ -82,27 +81,28 @@ locales components for the kolf package.
 
 
 %prep
-%setup -q -n kolf-18.08.0
+%setup -q -n kolf-18.12.2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1535232509
-mkdir clr-build
+export SOURCE_DATE_EPOCH=1549871860
+mkdir -p clr-build
 pushd clr-build
 %cmake ..
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1535232509
+export SOURCE_DATE_EPOCH=1549871860
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/kolf
-cp COPYING %{buildroot}/usr/share/doc/kolf/COPYING
-cp COPYING.DOC %{buildroot}/usr/share/doc/kolf/COPYING.DOC
-cp COPYING.LIB %{buildroot}/usr/share/doc/kolf/COPYING.LIB
+mkdir -p %{buildroot}/usr/share/package-licenses/kolf
+cp COPYING %{buildroot}/usr/share/package-licenses/kolf/COPYING
+cp COPYING.DOC %{buildroot}/usr/share/package-licenses/kolf/COPYING.DOC
+cp COPYING.LIB %{buildroot}/usr/share/package-licenses/kolf/COPYING.LIB
+cp external/COPYING %{buildroot}/usr/share/package-licenses/kolf/external_COPYING
 pushd clr-build
 %make_install
 popd
@@ -179,10 +179,11 @@ popd
 /usr/lib64/libkolfprivate.so.5.0.0
 
 %files license
-%defattr(-,root,root,-)
-/usr/share/doc/kolf/COPYING
-/usr/share/doc/kolf/COPYING.DOC
-/usr/share/doc/kolf/COPYING.LIB
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/kolf/COPYING
+/usr/share/package-licenses/kolf/COPYING.DOC
+/usr/share/package-licenses/kolf/COPYING.LIB
+/usr/share/package-licenses/kolf/external_COPYING
 
 %files locales -f kolf.lang
 %defattr(-,root,root,-)
