@@ -5,12 +5,12 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : kolf
-Version  : 18.12.3
-Release  : 4
-URL      : https://download.kde.org/stable/applications/18.12.3/src/kolf-18.12.3.tar.xz
-Source0  : https://download.kde.org/stable/applications/18.12.3/src/kolf-18.12.3.tar.xz
-Source99 : https://download.kde.org/stable/applications/18.12.3/src/kolf-18.12.3.tar.xz.sig
-Summary  : No detailed summary available
+Version  : 19.04.0
+Release  : 5
+URL      : https://download.kde.org/stable/applications/19.04.0/src/kolf-19.04.0.tar.xz
+Source0  : https://download.kde.org/stable/applications/19.04.0/src/kolf-19.04.0.tar.xz
+Source99 : https://download.kde.org/stable/applications/19.04.0/src/kolf-19.04.0.tar.xz.sig
+Summary  : A miniature golf game with 2d top-down view
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0 LGPL-2.0 Zlib
 Requires: kolf-bin = %{version}-%{release}
@@ -81,23 +81,22 @@ locales components for the kolf package.
 
 
 %prep
-%setup -q -n kolf-18.12.3
+%setup -q -n kolf-19.04.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1552003652
+export SOURCE_DATE_EPOCH=1555617742
 mkdir -p clr-build
 pushd clr-build
-export LDFLAGS="${LDFLAGS} -fno-lto"
 %cmake ..
-make  %{?_smp_mflags} VERBOSE=1
+make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1552003652
+export SOURCE_DATE_EPOCH=1555617742
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kolf
 cp COPYING %{buildroot}/usr/share/package-licenses/kolf/COPYING
@@ -125,6 +124,7 @@ popd
 /usr/share/icons/hicolor/32x32/apps/kolf.png
 /usr/share/icons/hicolor/48x48/apps/kolf.png
 /usr/share/icons/hicolor/64x64/apps/kolf.png
+/usr/share/icons/hicolor/scalable/apps/kolf.svgz
 /usr/share/kolf/courses/Classic.kolf
 /usr/share/kolf/courses/Easy.kolf
 /usr/share/kolf/courses/Hard.kolf
@@ -138,11 +138,13 @@ popd
 /usr/share/kolf/sounds/blackhole.wav
 /usr/share/kolf/sounds/blackholeeject.wav
 /usr/share/kolf/sounds/blackholeputin.wav
+/usr/share/kolf/sounds/bumper.wav
 /usr/share/kolf/sounds/hit.wav
 /usr/share/kolf/sounds/holed.wav
 /usr/share/kolf/sounds/holeinone.wav
 /usr/share/kolf/sounds/puddle.wav
 /usr/share/kolf/sounds/wall.wav
+/usr/share/kolf/sounds/woohoo.wav
 /usr/share/kolf/tutorial.kolf
 /usr/share/kolf/tutorial.kolfgame
 /usr/share/kxmlgui5/kolf/kolfui.rc
