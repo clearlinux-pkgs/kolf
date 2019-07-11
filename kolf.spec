@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : kolf
-Version  : 19.04.2
-Release  : 8
-URL      : https://download.kde.org/stable/applications/19.04.2/src/kolf-19.04.2.tar.xz
-Source0  : https://download.kde.org/stable/applications/19.04.2/src/kolf-19.04.2.tar.xz
-Source99 : https://download.kde.org/stable/applications/19.04.2/src/kolf-19.04.2.tar.xz.sig
+Version  : 19.04.3
+Release  : 9
+URL      : https://download.kde.org/stable/applications/19.04.3/src/kolf-19.04.3.tar.xz
+Source0  : https://download.kde.org/stable/applications/19.04.3/src/kolf-19.04.3.tar.xz
+Source99 : https://download.kde.org/stable/applications/19.04.3/src/kolf-19.04.3.tar.xz.sig
 Summary  : A miniature golf game with 2d top-down view
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0 LGPL-2.0 Zlib
@@ -81,16 +81,17 @@ locales components for the kolf package.
 
 
 %prep
-%setup -q -n kolf-19.04.2
+%setup -q -n kolf-19.04.3
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1559897298
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1562877194
 mkdir -p clr-build
 pushd clr-build
+export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -99,11 +100,11 @@ export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
 export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %cmake ..
-make  %{?_smp_mflags}
+make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1559897298
+export SOURCE_DATE_EPOCH=1562877194
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kolf
 cp COPYING %{buildroot}/usr/share/package-licenses/kolf/COPYING
