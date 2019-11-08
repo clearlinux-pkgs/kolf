@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : kolf
-Version  : 19.08.2
-Release  : 12
-URL      : https://download.kde.org/stable/applications/19.08.2/src/kolf-19.08.2.tar.xz
-Source0  : https://download.kde.org/stable/applications/19.08.2/src/kolf-19.08.2.tar.xz
-Source1 : https://download.kde.org/stable/applications/19.08.2/src/kolf-19.08.2.tar.xz.sig
+Version  : 19.08.3
+Release  : 13
+URL      : https://download.kde.org/stable/applications/19.08.3/src/kolf-19.08.3.tar.xz
+Source0  : https://download.kde.org/stable/applications/19.08.3/src/kolf-19.08.3.tar.xz
+Source1 : https://download.kde.org/stable/applications/19.08.3/src/kolf-19.08.3.tar.xz.sig
 Summary  : A miniature golf game with 2d top-down view
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0 LGPL-2.0 Zlib
@@ -81,14 +81,14 @@ locales components for the kolf package.
 
 
 %prep
-%setup -q -n kolf-19.08.2
+%setup -q -n kolf-19.08.3
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1570766210
+export SOURCE_DATE_EPOCH=1573174592
 mkdir -p clr-build
 pushd clr-build
 # -Werror is for werrorists
@@ -105,13 +105,13 @@ make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1570766210
+export SOURCE_DATE_EPOCH=1573174592
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kolf
-cp COPYING %{buildroot}/usr/share/package-licenses/kolf/COPYING
-cp COPYING.DOC %{buildroot}/usr/share/package-licenses/kolf/COPYING.DOC
-cp COPYING.LIB %{buildroot}/usr/share/package-licenses/kolf/COPYING.LIB
-cp external/COPYING %{buildroot}/usr/share/package-licenses/kolf/external_COPYING
+cp %{_builddir}/kolf-19.08.3/COPYING %{buildroot}/usr/share/package-licenses/kolf/88d0ee521bcbddeff0f97979d84760ef8d1529cc
+cp %{_builddir}/kolf-19.08.3/COPYING.DOC %{buildroot}/usr/share/package-licenses/kolf/bd75d59f9d7d9731bfabdc48ecd19e704d218e38
+cp %{_builddir}/kolf-19.08.3/COPYING.LIB %{buildroot}/usr/share/package-licenses/kolf/ba8966e2473a9969bdcab3dc82274c817cfd98a1
+cp %{_builddir}/kolf-19.08.3/external/COPYING %{buildroot}/usr/share/package-licenses/kolf/2968029980d16f3e4c5ca945099a747725a5eacb
 pushd clr-build
 %make_install
 popd
@@ -192,10 +192,10 @@ popd
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/kolf/COPYING
-/usr/share/package-licenses/kolf/COPYING.DOC
-/usr/share/package-licenses/kolf/COPYING.LIB
-/usr/share/package-licenses/kolf/external_COPYING
+/usr/share/package-licenses/kolf/2968029980d16f3e4c5ca945099a747725a5eacb
+/usr/share/package-licenses/kolf/88d0ee521bcbddeff0f97979d84760ef8d1529cc
+/usr/share/package-licenses/kolf/ba8966e2473a9969bdcab3dc82274c817cfd98a1
+/usr/share/package-licenses/kolf/bd75d59f9d7d9731bfabdc48ecd19e704d218e38
 
 %files locales -f kolf.lang
 %defattr(-,root,root,-)
