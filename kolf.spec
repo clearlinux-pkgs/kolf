@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : kolf
-Version  : 20.04.2
-Release  : 20
-URL      : https://download.kde.org/stable/release-service/20.04.2/src/kolf-20.04.2.tar.xz
-Source0  : https://download.kde.org/stable/release-service/20.04.2/src/kolf-20.04.2.tar.xz
-Source1  : https://download.kde.org/stable/release-service/20.04.2/src/kolf-20.04.2.tar.xz.sig
+Version  : 20.08.0
+Release  : 21
+URL      : https://download.kde.org/stable/release-service/20.08.0/src/kolf-20.08.0.tar.xz
+Source0  : https://download.kde.org/stable/release-service/20.08.0/src/kolf-20.08.0.tar.xz
+Source1  : https://download.kde.org/stable/release-service/20.08.0/src/kolf-20.08.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0 LGPL-2.0 Zlib
@@ -69,15 +69,15 @@ locales components for the kolf package.
 
 
 %prep
-%setup -q -n kolf-20.04.2
-cd %{_builddir}/kolf-20.04.2
+%setup -q -n kolf-20.08.0
+cd %{_builddir}/kolf-20.08.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1591909328
+export SOURCE_DATE_EPOCH=1597790076
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -89,17 +89,17 @@ export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %cmake ..
-make  %{?_smp_mflags}  VERBOSE=1
+make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1591909328
+export SOURCE_DATE_EPOCH=1597790076
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kolf
-cp %{_builddir}/kolf-20.04.2/COPYING %{buildroot}/usr/share/package-licenses/kolf/88d0ee521bcbddeff0f97979d84760ef8d1529cc
-cp %{_builddir}/kolf-20.04.2/COPYING.DOC %{buildroot}/usr/share/package-licenses/kolf/1bd373e4851a93027ba70064bd7dbdc6827147e1
-cp %{_builddir}/kolf-20.04.2/COPYING.LIB %{buildroot}/usr/share/package-licenses/kolf/ba8966e2473a9969bdcab3dc82274c817cfd98a1
-cp %{_builddir}/kolf-20.04.2/external/COPYING %{buildroot}/usr/share/package-licenses/kolf/2968029980d16f3e4c5ca945099a747725a5eacb
+cp %{_builddir}/kolf-20.08.0/COPYING %{buildroot}/usr/share/package-licenses/kolf/88d0ee521bcbddeff0f97979d84760ef8d1529cc
+cp %{_builddir}/kolf-20.08.0/COPYING.DOC %{buildroot}/usr/share/package-licenses/kolf/1bd373e4851a93027ba70064bd7dbdc6827147e1
+cp %{_builddir}/kolf-20.08.0/COPYING.LIB %{buildroot}/usr/share/package-licenses/kolf/ba8966e2473a9969bdcab3dc82274c817cfd98a1
+cp %{_builddir}/kolf-20.08.0/external/COPYING %{buildroot}/usr/share/package-licenses/kolf/2968029980d16f3e4c5ca945099a747725a5eacb
 pushd clr-build
 %make_install
 popd
@@ -159,6 +159,8 @@ popd
 /usr/share/doc/HTML/et/kolf/index.docbook
 /usr/share/doc/HTML/fr/kolf/index.cache.bz2
 /usr/share/doc/HTML/fr/kolf/index.docbook
+/usr/share/doc/HTML/gl/kolf/index.cache.bz2
+/usr/share/doc/HTML/gl/kolf/index.docbook
 /usr/share/doc/HTML/it/kolf/index.cache.bz2
 /usr/share/doc/HTML/it/kolf/index.docbook
 /usr/share/doc/HTML/nl/kolf/index.cache.bz2
