@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : kolf
-Version  : 20.12.3
-Release  : 26
-URL      : https://download.kde.org/stable/release-service/20.12.3/src/kolf-20.12.3.tar.xz
-Source0  : https://download.kde.org/stable/release-service/20.12.3/src/kolf-20.12.3.tar.xz
-Source1  : https://download.kde.org/stable/release-service/20.12.3/src/kolf-20.12.3.tar.xz.sig
+Version  : 21.04.0
+Release  : 27
+URL      : https://download.kde.org/stable/release-service/21.04.0/src/kolf-21.04.0.tar.xz
+Source0  : https://download.kde.org/stable/release-service/21.04.0/src/kolf-21.04.0.tar.xz
+Source1  : https://download.kde.org/stable/release-service/21.04.0/src/kolf-21.04.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0 LGPL-2.0 Zlib
@@ -24,7 +24,9 @@ BuildRequires : libkdegames-dev
 BuildRequires : qtbase-dev mesa-dev
 
 %description
-This directory contains a source snapshot of Box2D, taken from revision 141 of https://web.archive.org/web/20110429162509/http://box2d.googlecode.com/svn/trunk/Box2D/Box2D
+This directory contains code from Project Tagaro, which has been copied into
+the source tree of Kolf to ease porting to KGameRenderer, while Tagaro is not
+stable.
 
 %package bin
 Summary: bin components for the kolf package.
@@ -69,15 +71,15 @@ locales components for the kolf package.
 
 
 %prep
-%setup -q -n kolf-20.12.3
-cd %{_builddir}/kolf-20.12.3
+%setup -q -n kolf-21.04.0
+cd %{_builddir}/kolf-21.04.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1618686351
+export SOURCE_DATE_EPOCH=1619220740
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -93,13 +95,13 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1618686351
+export SOURCE_DATE_EPOCH=1619220740
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kolf
-cp %{_builddir}/kolf-20.12.3/COPYING %{buildroot}/usr/share/package-licenses/kolf/88d0ee521bcbddeff0f97979d84760ef8d1529cc
-cp %{_builddir}/kolf-20.12.3/COPYING.DOC %{buildroot}/usr/share/package-licenses/kolf/1bd373e4851a93027ba70064bd7dbdc6827147e1
-cp %{_builddir}/kolf-20.12.3/COPYING.LIB %{buildroot}/usr/share/package-licenses/kolf/ba8966e2473a9969bdcab3dc82274c817cfd98a1
-cp %{_builddir}/kolf-20.12.3/external/COPYING %{buildroot}/usr/share/package-licenses/kolf/2968029980d16f3e4c5ca945099a747725a5eacb
+cp %{_builddir}/kolf-21.04.0/COPYING %{buildroot}/usr/share/package-licenses/kolf/88d0ee521bcbddeff0f97979d84760ef8d1529cc
+cp %{_builddir}/kolf-21.04.0/COPYING.DOC %{buildroot}/usr/share/package-licenses/kolf/1bd373e4851a93027ba70064bd7dbdc6827147e1
+cp %{_builddir}/kolf-21.04.0/COPYING.LIB %{buildroot}/usr/share/package-licenses/kolf/ba8966e2473a9969bdcab3dc82274c817cfd98a1
+cp %{_builddir}/kolf-21.04.0/external/COPYING %{buildroot}/usr/share/package-licenses/kolf/2968029980d16f3e4c5ca945099a747725a5eacb
 pushd clr-build
 %make_install
 popd
