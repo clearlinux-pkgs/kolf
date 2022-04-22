@@ -5,14 +5,14 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : kolf
-Version  : 21.12.3
-Release  : 36
-URL      : https://download.kde.org/stable/release-service/21.12.3/src/kolf-21.12.3.tar.xz
-Source0  : https://download.kde.org/stable/release-service/21.12.3/src/kolf-21.12.3.tar.xz
-Source1  : https://download.kde.org/stable/release-service/21.12.3/src/kolf-21.12.3.tar.xz.sig
+Version  : 22.04.0
+Release  : 37
+URL      : https://download.kde.org/stable/release-service/22.04.0/src/kolf-22.04.0.tar.xz
+Source0  : https://download.kde.org/stable/release-service/22.04.0/src/kolf-22.04.0.tar.xz
+Source1  : https://download.kde.org/stable/release-service/22.04.0/src/kolf-22.04.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
-License  : GFDL-1.2 GPL-2.0 LGPL-2.0 Zlib
+License  : BSD-3-Clause GFDL-1.2 GPL-2.0 LGPL-2.0 Zlib
 Requires: kolf-bin = %{version}-%{release}
 Requires: kolf-data = %{version}-%{release}
 Requires: kolf-license = %{version}-%{release}
@@ -21,7 +21,6 @@ BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : extra-cmake-modules-data
 BuildRequires : libkdegames-dev
-BuildRequires : qtbase-dev mesa-dev
 
 %description
 This directory contains code from Project Tagaro, which has been copied into
@@ -71,15 +70,15 @@ locales components for the kolf package.
 
 
 %prep
-%setup -q -n kolf-21.12.3
-cd %{_builddir}/kolf-21.12.3
+%setup -q -n kolf-22.04.0
+cd %{_builddir}/kolf-22.04.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1646530988
+export SOURCE_DATE_EPOCH=1650666259
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -95,13 +94,14 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1646530988
+export SOURCE_DATE_EPOCH=1650666259
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/kolf
-cp %{_builddir}/kolf-21.12.3/COPYING %{buildroot}/usr/share/package-licenses/kolf/88d0ee521bcbddeff0f97979d84760ef8d1529cc
-cp %{_builddir}/kolf-21.12.3/COPYING.DOC %{buildroot}/usr/share/package-licenses/kolf/1bd373e4851a93027ba70064bd7dbdc6827147e1
-cp %{_builddir}/kolf-21.12.3/COPYING.LIB %{buildroot}/usr/share/package-licenses/kolf/ba8966e2473a9969bdcab3dc82274c817cfd98a1
-cp %{_builddir}/kolf-21.12.3/external/COPYING %{buildroot}/usr/share/package-licenses/kolf/2968029980d16f3e4c5ca945099a747725a5eacb
+cp %{_builddir}/kolf-22.04.0/CMakePresets.json.license %{buildroot}/usr/share/package-licenses/kolf/29fb05b49e12a380545499938c4879440bd8851e
+cp %{_builddir}/kolf-22.04.0/COPYING %{buildroot}/usr/share/package-licenses/kolf/88d0ee521bcbddeff0f97979d84760ef8d1529cc
+cp %{_builddir}/kolf-22.04.0/COPYING.DOC %{buildroot}/usr/share/package-licenses/kolf/1bd373e4851a93027ba70064bd7dbdc6827147e1
+cp %{_builddir}/kolf-22.04.0/COPYING.LIB %{buildroot}/usr/share/package-licenses/kolf/ba8966e2473a9969bdcab3dc82274c817cfd98a1
+cp %{_builddir}/kolf-22.04.0/external/COPYING %{buildroot}/usr/share/package-licenses/kolf/2968029980d16f3e4c5ca945099a747725a5eacb
 pushd clr-build
 %make_install
 popd
@@ -184,6 +184,7 @@ popd
 %defattr(0644,root,root,0755)
 /usr/share/package-licenses/kolf/1bd373e4851a93027ba70064bd7dbdc6827147e1
 /usr/share/package-licenses/kolf/2968029980d16f3e4c5ca945099a747725a5eacb
+/usr/share/package-licenses/kolf/29fb05b49e12a380545499938c4879440bd8851e
 /usr/share/package-licenses/kolf/88d0ee521bcbddeff0f97979d84760ef8d1529cc
 /usr/share/package-licenses/kolf/ba8966e2473a9969bdcab3dc82274c817cfd98a1
 
